@@ -1,0 +1,25 @@
+BASENAME = calcolatori
+BASENAME2 = altro
+
+BASENAME3 = memorizzatore
+
+HEADER = mylib.h
+
+EXE = $(BASENAME)
+EXE2 = $(BASENAME3)
+
+CFLAGS = -Wall -pthread
+CC = gcc
+
+debug: $(EXE) $(EXE2)
+
+$(EXE): $(BASENAME).c $(BASENAME2).c $(HEADER)
+	$(CC) -o $(EXE) $(BASENAME).c $(BASENAME2).c $(HEADER) -DDEBUG $(CFLAGS)
+
+$(EXE2): $(BASENAME3).c $(BASENAME2).c $(HEADER)
+	$(CC) -o $(EXE2) $(BASENAME3).c $(BASENAME2).c $(HEADER) -DDEBUG $(CFLAGS)
+
+clean:
+	rm -f $(EXE) $(EXE2)
+
+.PHONY: clean debug
